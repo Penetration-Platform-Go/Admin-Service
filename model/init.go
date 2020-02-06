@@ -10,15 +10,27 @@ import (
 // MongoGrpcClient for connection auth grpc service
 var MongoGrpcClient *grpc.ClientConn
 
+// MysqlGrpcClient for connection admin grpc service
+var MysqlGrpcClient *grpc.ClientConn
+
 func init() {
 	// get user service address
 	AUTHADDRESS := "localhost:8083"
-	conn, err := grpc.Dial(AUTHADDRESS, grpc.WithInsecure())
+	mongoconn, err := grpc.Dial(AUTHADDRESS, grpc.WithInsecure())
 	if err != nil {
 		log.Println(err)
 		os.Exit(0)
 	}
-	MongoGrpcClient = conn
+	MongoGrpcClient = mongoconn
+
+	MYSQLADDRESS := "localhost:8082"
+	mysqlconn, err := grpc.Dial(MYSQLADDRESS, grpc.WithInsecure())
+	if err != nil {
+		log.Println(err)
+		os.Exit(0)
+	}
+	MysqlGrpcClient = mysqlconn
+
 }
 
 // Project define
@@ -28,4 +40,13 @@ type Project struct {
 	Score int32    `json:"score,omitempty"`
 	IP    []*pb.Ip `json:"ip,omitempty"`
 	Map   *pb.Map  `json:"map,omitempty"`
+}
+
+// User define
+type User struct {
+	Username string `json:"username,omitempty"`
+	Nickname string `json:"nickname,omitempty"`
+	Password string `json:"password,omitempty"`
+	Email    string `json:"email,omitempty"`
+	Photo    string `json:"photo,omitempty"`
 }

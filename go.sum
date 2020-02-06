@@ -8,6 +8,8 @@ github.com/Penetration-Platform-Go/gRPC-Files v0.0.0-20200206065527-66f99b722a5a
 github.com/Penetration-Platform-Go/gRPC-Files v0.0.0-20200206065527-66f99b722a5a/go.mod h1:leUmCHTVZsBU1wMGT7ui7fOyPZNfXdJM9rbKAuMwPoQ=
 github.com/Penetration-Platform-Go/gRPC-Files v0.0.0-20200206090123-802f27655682 h1:qENvlCE7QeqdLm/ntyqDZS2mAV7xeXSrZFfRtSQ8sbI=
 github.com/Penetration-Platform-Go/gRPC-Files v0.0.0-20200206090123-802f27655682/go.mod h1:leUmCHTVZsBU1wMGT7ui7fOyPZNfXdJM9rbKAuMwPoQ=
+github.com/Penetration-Platform-Go/gRPC-Files v0.0.0-20200206094001-26eb7345d882 h1:nLJqiUfwGc2PVbG9RHNzt7zQyFT5Dxome00G/NaPNzM=
+github.com/Penetration-Platform-Go/gRPC-Files v0.0.0-20200206094001-26eb7345d882/go.mod h1:leUmCHTVZsBU1wMGT7ui7fOyPZNfXdJM9rbKAuMwPoQ=
 github.com/census-instrumentation/opencensus-proto v0.2.1/go.mod h1:f6KPmirojxKA12rnyqOA5BBL4O983OfeGPqjHWSTneU=
 github.com/client9/misspell v0.3.4/go.mod h1:qj6jICC3Q7zFZvVWo7KLAzC3yx5G7kyvSDkc90ppPyw=
 github.com/davecgh/go-spew v1.1.0/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=
