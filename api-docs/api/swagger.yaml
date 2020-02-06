@@ -1,0 +1,138 @@
+---
+swagger: "2.0"
+info:
+  description: "Admin Service"
+  version: "1.0.0"
+  title: "管理员服务"
+  termsOfService: "https://github.com/Penetration-Platform-Go"
+  contact:
+    email: "chris-ju@qq.com"
+  license:
+    name: "Apache 2.0"
+    url: "http://www.apache.org/licenses/LICENSE-2.0.html"
+tags:
+- name: "admin"
+  description: "Operations about Admin"
+schemes:
+- "http"
+paths:
+  /admin/project:
+    get:
+      tags:
+      - "admin"
+      produces:
+      - "application/json"
+      parameters: []
+      responses:
+        "200":
+          description: "Successful/Error"
+          schema:
+            $ref: "#/definitions/Project"
+    delete:
+      tags:
+      - "admin"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        required: true
+        schema:
+          $ref: "#/definitions/Project"
+        x-exportParamName: "Body"
+      responses:
+        "200":
+          description: "Successful/Error"
+  /admin/project/score:
+    put:
+      tags:
+      - "admin"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        required: true
+        schema:
+          $ref: "#/definitions/Project"
+        x-exportParamName: "Body"
+      responses:
+        "200":
+          description: "Successful/Error"
+  /admin/user:
+    get:
+      tags:
+      - "admin"
+      produces:
+      - "application/json"
+      parameters: []
+      responses:
+        "200":
+          description: "Successful/Error"
+          schema:
+            $ref: "#/definitions/User"
+  /admin/project/user:
+    get:
+      tags:
+      - "admin"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "username"
+        in: "query"
+        required: true
+        type: "string"
+        x-exportParamName: "Username"
+      responses:
+        "200":
+          description: "Successful/Error"
+          schema:
+            $ref: "#/definitions/Project"
+  /admin/project/id:
+    get:
+      tags:
+      - "admin"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "id"
+        in: "query"
+        required: true
+        type: "string"
+        x-exportParamName: "Id"
+      responses:
+        "200":
+          description: "Successful/Error"
+          schema:
+            $ref: "#/definitions/Project"
+definitions:
+  Project:
+    type: "object"
+    properties:
+      id:
+        type: "string"
+      user:
+        type: "string"
+      value:
+        type: "object"
+        properties: {}
+    example:
+      id: "id"
+      user: "user"
+      value: "{}"
+  User:
+    type: "object"
+    properties:
+      username:
+        type: "string"
+      nickname:
+        type: "string"
+      email:
+        type: "string"
+      photo:
+        type: "string"
+    example:
+      nickname: "nickname"
+      photo: "photo"
+      email: "email"
+      username: "username"
