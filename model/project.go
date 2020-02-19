@@ -27,6 +27,7 @@ func QueryAllProjects() ([]Project, error) {
 			ID:    feature.Id,
 			User:  feature.User,
 			IP:    feature.Ip,
+			Title: feature.Title,
 			Score: feature.Score,
 			Map:   feature.Map,
 		})
@@ -43,6 +44,19 @@ func DeleteProjectByID(id string) (bool, string) {
 
 	result, _ := client.DeleteProject(ctx, &pb.Condition{Value: []*pb.Value{
 		{Key: "_id", Value: id},
+	},
+	})
+	return result.IsVaild, result.Value
+}
+
+// DeleteProjectByUsername delete project
+func DeleteProjectByUsername(username string) (bool, string) {
+	client := pb.NewMongoDBClient(MongoGrpcClient)
+	ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
+	defer cancel()
+
+	result, _ := client.DeleteProject(ctx, &pb.Condition{Value: []*pb.Value{
+		{Key: "user", Value: username},
 	},
 	})
 	return result.IsVaild, result.Value
@@ -70,13 +84,13 @@ func EvaluateProject(id string, score int32) (bool, string) {
 	return result.IsVaild, result.Value
 }
 
-// QueryProjectByID Query Project By username
-func QueryProjectByID(id string) ([]Project, error) {
+// QueryProjectByTitle Query Project By Title
+func QueryProjectByTitle(title string) ([]Project, error) {
 	client := pb.NewMongoDBClient(MongoGrpcClient)
 	ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
 	defer cancel()
 	stream, err := client.QueryProjects(ctx, &pb.Condition{Value: []*pb.Value{
-		{Key: "_id", Value: id},
+		{Key: "title", Value: title},
 	}})
 	if err != nil {
 		return nil, err
@@ -91,6 +105,7 @@ func QueryProjectByID(id string) ([]Project, error) {
 			ID:    feature.Id,
 			User:  feature.User,
 			IP:    feature.Ip,
+			Title: feature.Title,
 			Score: feature.Score,
 			Map:   feature.Map,
 		})
@@ -120,6 +135,7 @@ func QueryProjectsByUsername(username string) ([]Project, error) {
 			ID:    feature.Id,
 			User:  feature.User,
 			IP:    feature.Ip,
+			Title: feature.Title,
 			Score: feature.Score,
 			Map:   feature.Map,
 		})

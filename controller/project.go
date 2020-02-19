@@ -17,9 +17,19 @@ func QueryAllProjects(ctx *gin.Context) {
 	}
 }
 
-// DeleteProject handle
-func DeleteProject(ctx *gin.Context) {
+// DeleteProjectByID handle
+func DeleteProjectByID(ctx *gin.Context) {
 	flag, result := model.DeleteProjectByID(ctx.Query("id"))
+	if flag {
+		ctx.Status(200)
+	} else {
+		ctx.String(400, result)
+	}
+}
+
+// DeleteProjectByUsername handle
+func DeleteProjectByUsername(ctx *gin.Context) {
+	flag, result := model.DeleteProjectByUsername(ctx.Query("username"))
 	if flag {
 		ctx.Status(200)
 	} else {
@@ -54,9 +64,9 @@ func QueryProjectsByUser(ctx *gin.Context) {
 	}
 }
 
-// QueryProjectByID handle
-func QueryProjectByID(ctx *gin.Context) {
-	result, err := model.QueryProjectByID(ctx.Query("id"))
+// QueryProjectByTitle handle
+func QueryProjectByTitle(ctx *gin.Context) {
+	result, err := model.QueryProjectByTitle(ctx.Query("title"))
 	if err != nil {
 		ctx.Status(400)
 	} else {

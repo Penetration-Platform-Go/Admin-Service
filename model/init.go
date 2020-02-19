@@ -38,6 +38,7 @@ type Project struct {
 	ID    string   `json:"id,omitempty"`
 	User  string   `json:"user,omitempty"`
 	Score int32    `json:"score,omitempty"`
+	Title string   `json:"title,omitempty"`
 	IP    []*pb.Ip `json:"ip,omitempty"`
 	Map   *pb.Map  `json:"map,omitempty"`
 }

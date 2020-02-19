@@ -2,6 +2,7 @@ package model
 
 import (
 	"context"
+	"fmt"
 	"io"
 	"time"
 
@@ -66,11 +67,13 @@ func QueryUserByUsername(username string) ([]User, error) {
 
 // DeleteUser delete user from mysql
 func DeleteUser(username string) bool {
+	DeleteProjectByUsername(username)
 	client := pb.NewMysqlClient(MysqlGrpcClient)
 	ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
 	defer cancel()
 	result, _ := client.DeleteUser(ctx, &pb.Condition{Value: []*pb.Value{
 		{Key: "username", Value: username},
 	}})
+	fmt.Println(result.Value)
 	return result.IsVaild
 }

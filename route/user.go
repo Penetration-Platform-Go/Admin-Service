@@ -11,6 +11,7 @@ import (
 func userServiceRoute(route *gin.RouterGroup) {
 
 	route.GET("/", middleware.Auth(), controller.QueryAllUsers)
-
 	route.GET("/username", middleware.Auth(), controller.QueryUserByUsername)
+	route.DELETE("/username", middleware.Auth(), controller.DeleteUserByUsername)
+
 }

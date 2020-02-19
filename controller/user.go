@@ -24,3 +24,13 @@ func QueryUserByUsername(ctx *gin.Context) {
 		ctx.JSON(200, result)
 	}
 }
+
+// DeleteUserByUsername handle
+func DeleteUserByUsername(ctx *gin.Context) {
+	result := model.DeleteUser(ctx.Query("username"))
+	if result {
+		ctx.Status(200)
+	} else {
+		ctx.Status(400)
+	}
+}

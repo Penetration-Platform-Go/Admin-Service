@@ -11,11 +11,11 @@ import (
 func projectServiceRoute(route *gin.RouterGroup) {
 
 	route.GET("/", middleware.Auth(), controller.QueryAllProjects)
-	route.DELETE("/", middleware.Auth(), controller.DeleteProject)
+	route.DELETE("/", middleware.Auth(), controller.DeleteProjectByID)
 
 	route.PUT("/score", middleware.Auth(), controller.EvaluateProject)
 
 	route.GET("/user", middleware.Auth(), controller.QueryProjectsByUser)
-	route.GET("/id", middleware.Auth(), controller.QueryProjectByID)
+	route.GET("/title", middleware.Auth(), controller.QueryProjectByTitle)
 
 }
