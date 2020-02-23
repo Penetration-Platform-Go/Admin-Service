@@ -8,6 +8,10 @@ import (
 // AdminRoute 路由分组
 func AdminRoute(app *gin.Engine) {
 	app.Use(middleware.Cors())
+
+	mainService := app.Group("/admin/info")
+	mainServiceRoute(mainService)
+
 	projectService := app.Group("/admin/project")
 	projectServiceRoute(projectService)
 

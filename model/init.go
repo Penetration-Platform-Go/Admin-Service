@@ -30,7 +30,6 @@ func init() {
 		os.Exit(0)
 	}
 	MysqlGrpcClient = mysqlconn
-
 }
 
 // Project define
@@ -50,4 +49,19 @@ type User struct {
 	Password string `json:"password,omitempty"`
 	Email    string `json:"email,omitempty"`
 	Photo    string `json:"photo,omitempty"`
+}
+
+// Info define
+type Info struct {
+	UserNumber            int     `json:"usernumber,omitempty"`
+	AllProjectNumber      int     `json:"allprojectnumber,omitempty"`
+	NotRatedProjectNumber int     `json:"notratedprojectnumber,omitempty"`
+	AllViews              int32   `json:"allviews,omitempty"`
+	ViewsBeforeWeek       []int32 `josn:"viewsbeforeweek,omitempty"`
+}
+
+// View define
+type View struct {
+	Date   string
+	Number int32
 }
