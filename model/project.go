@@ -24,12 +24,12 @@ func QueryAllProjects() ([]Project, error) {
 			break
 		}
 		results = append(results, Project{
-			ID:    feature.Id,
-			User:  feature.User,
-			IP:    feature.Ip,
-			Title: feature.Title,
-			Score: feature.Score,
-			Map:   feature.Map,
+			ID:        feature.Id,
+			User:      feature.User,
+			Equipment: feature.Equipment,
+			Title:     feature.Title,
+			Score:     feature.Score,
+			Map:       feature.Map,
 		})
 
 	}
@@ -102,12 +102,12 @@ func QueryProjectByTitle(title string) ([]Project, error) {
 			break
 		}
 		results = append(results, Project{
-			ID:    feature.Id,
-			User:  feature.User,
-			IP:    feature.Ip,
-			Title: feature.Title,
-			Score: feature.Score,
-			Map:   feature.Map,
+			ID:        feature.Id,
+			User:      feature.User,
+			Equipment: feature.Equipment,
+			Title:     feature.Title,
+			Score:     feature.Score,
+			Map:       feature.Map,
 		})
 
 	}
@@ -132,12 +132,12 @@ func QueryProjectsByUsername(username string) ([]Project, error) {
 			break
 		}
 		results = append(results, Project{
-			ID:    feature.Id,
-			User:  feature.User,
-			IP:    feature.Ip,
-			Title: feature.Title,
-			Score: feature.Score,
-			Map:   feature.Map,
+			ID:        feature.Id,
+			User:      feature.User,
+			Equipment: feature.Equipment,
+			Title:     feature.Title,
+			Score:     feature.Score,
+			Map:       feature.Map,
 		})
 
 	}
