@@ -143,3 +143,33 @@ func QueryProjectsByUsername(username string) ([]Project, error) {
 	}
 	return results, nil
 }
+
+// QueryProjectByID Query Project By username
+func QueryProjectByID(ID string) (*Project, error) {
+	client := pb.NewMongoDBClient(MongoGrpcClient)
+	ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
+	defer cancel()
+	stream, err := client.QueryProjects(ctx, &pb.Condition{Value: []*pb.Value{
+		{Key: "_id", Value: ID},
+	}})
+	if err != nil {
+		return nil, err
+	}
+	var results []Project
+	for {
+		feature, err := stream.Recv()
+		if err == io.EOF || feature == nil {
+			break
+		}
+		results = append(results, Project{
+			ID:        feature.Id,
+			User:      feature.User,
+			Equipment: feature.Equipment,
+			Title:     feature.Title,
+			Score:     feature.Score,
+			Map:       feature.Map,
+		})
+
+	}
+	return &results[0], nil
+}

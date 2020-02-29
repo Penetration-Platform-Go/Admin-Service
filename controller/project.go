@@ -73,3 +73,16 @@ func QueryProjectByTitle(ctx *gin.Context) {
 		ctx.JSON(200, result)
 	}
 }
+
+// RobotEvaluate handle
+func RobotEvaluate(ctx *gin.Context) {
+	project, err := model.QueryProjectByID(ctx.Query("id"))
+	if err != nil {
+		ctx.Status(400)
+	}
+	score, information := robotEvaluate(project)
+	ctx.JSON(200, model.Score{
+		Score:       score,
+		Information: information,
+	})
+}

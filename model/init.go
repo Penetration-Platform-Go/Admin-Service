@@ -65,3 +65,9 @@ type View struct {
 	Date   string
 	Number int32
 }
+
+// Score define
+type Score struct {
+	Score       int    `json:"score,omitempty"`
+	Information string `json:"information,omitempty"`
+}
