@@ -23,7 +23,7 @@ func robotEvaluate(project *model.Project) (int, string) {
 	lib.InitMatrix(network)
 	deep := getNetworkDeep(network)
 	equipmentTypeNumber := getPCNumber(project.Equipment)
-	childNetwrok := getChildNetworkNumber(network)
+	childNetwork := getChildNetworkNumber(network)
 
 	information := ""
 
@@ -59,9 +59,25 @@ func robotEvaluate(project *model.Project) (int, string) {
 		information += fmt.Sprintf("%s Number:\t %d\n", t, equipmentTypeNumber[t])
 	}
 
-	information += fmt.Sprintf("\nChild Network Number:\t %d\n\n", childNetwrok)
+	information += fmt.Sprintf("\nChild Network Number:\t %d\n\n", childNetwork)
 
-	return 0, information
+	IPCorrectScore := 30 * len(wrongIP) / len(project.Equipment)
+	CorrectConnectedScore := 20
+	if len(wrongEquipmentPair) != 0 {
+		CorrectConnectedScore = 0
+	}
+	EquipmentScore := equipmentTypeNumber["route"]*2 + equipmentTypeNumber["pc"] + equipmentTypeNumber["switch"]*3
+	if EquipmentScore > 40 {
+		EquipmentScore = 40
+	}
+
+	ChildNetworkScore := childNetwork * 3
+	if ChildNetworkScore > 10 {
+		ChildNetworkScore = 10
+	}
+
+	TotalScore := IPCorrectScore + CorrectConnectedScore + EquipmentScore + ChildNetworkScore
+	return TotalScore, information
 }
 
 func getChildNetworkNumber(network [][]bool) int {
